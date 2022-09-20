@@ -16,8 +16,10 @@
             return "$this->nome possui $this->numFilhos filhos";
         }
 
-        function modificarNumFilhos() {
+        function modificarNumFilhos($numFilhos) {
             //afetar um atributo do objeto
+            // atravez do operador $this->numFilho (recuperar o atributo numFilhos)
+            $this->numFilhos = $numFilhos;
         }
     }
 
@@ -27,5 +29,14 @@
     $y = new Funcionario();
     // Para acessar atributos ou metodos usar -> e na sequencia chamar o atributo ou o metodo
     echo $y->resumirCadFunc();
+    echo '<br />';
+    $y->modificarNumFilhos(3);
+    echo $y->resumirCadFunc();
+    echo '<hr />';
 
+    $x = new Funcionario();
+    echo $x->resumirCadFunc();
+    echo '<br />';
+    $x->modificarNumFilhos(1);
+    echo $x->resumirCadFunc();
 ?>
