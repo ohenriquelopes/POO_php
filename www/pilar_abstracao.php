@@ -7,8 +7,21 @@
         public $nome = null;
         public $telefone = null;
         public $numFilhos = null;
+        public $cargo = null;
+        public $salario = null;
+
+        //getters setters (overloading / sobrecarga)
+        function __set($atributo, $valor) {
+            $this->$atributo = $valor;
+        }
+
+        function __get($atributo) {
+            return $this->$atributo;
+        }
+
 
         //getters setters
+        /*
         function setNome($nome) {
             $this->nome = $nome;
         }
@@ -25,11 +38,14 @@
             return $this->numFilhos;
         }
 
+        */
+
         //metodos
         function resumirCadFunc() {
             //$this é um operador de ajuste de contexto
             // se eu quiser recuperar um atributo do OBJ em questao $this->(atributo do obj)
-            return "$this->nome possui $this->numFilhos filhos";
+            //return "$this->nome possui $this->numFilhos filhos";
+            return $this->__get('nome') . " possui " . $this->__get('numFilhos') . "filhos";
         }
 
         function modificarNumFilhos($numFilhos) {
@@ -37,6 +53,9 @@
             // atravez do operador $this->numFilho (recuperar o atributo numFilhos)
             $this->numFilhos = $numFilhos;
         }
+        
+
+
     }
 
     // variavel $y que recebe uma instancia da classe funcionario
@@ -57,7 +76,11 @@
     $x->modificarNumFilhos(1);
     echo $x->resumirCadFunc();
     */
+    
 
+
+    // USANDO GETTERS E SETTERS (COMUNS)
+    /*
     $y = new Funcionario();
     $y->setNome('Jose');
     $y->setNumFilhos(2);
@@ -71,6 +94,21 @@
     $x->setNome('Maria');
     $x->setNumFilhos(0);
     echo $x->getNome() . ' possui ' . $x->getNumFilhos() . ' filho(s)';
+    */
 
+    // usando __get __set
+    $y = new Funcionario();
+    $y->__set('nome', 'Jose');
+    $y->__set('numFilhos', 2);
+    echo $y->resumirCadFunc();
+    //echo $y->__get('nome') . ' possui ' . $y->__get('numFilhos') . ' filho(s)';
+
+
+    echo '<br />';
+    $x = new Funcionario();
+    $x->__set('nome', 'Maria');
+    $x->__set('numFilhos', 0);
+    echo $x->resumirCadFunc();
+    //echo $y->__get('nome') . ' possui ' . $y->__get('numFilhos') . ' filho(s)';
 
 ?>
