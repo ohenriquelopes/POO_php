@@ -4,12 +4,33 @@
 
         public $nome = null;
 
-        function __construct() {
+        function __construct($nome) {
             echo 'Objeto iniciado';
+            $this->nome = $nome;
+        }
+
+        function __destruct()
+        {
+            echo 'Objeto removido';
+        }
+
+        function __get($atributo) {
+            return $this->$atributo;
+        }
+
+        function correr() {
+            return $this->nome . ' esta correndo'; // ou
+            // return $this->__get('nome') . 'esta correndo';
         }
     }
 
 
-    $pessoa = new Pessoa();
+    $pessoa = new Pessoa('Jorge');
+    echo '<br />Nome: ' . $pessoa->__get('nome');
+    echo '<br />' . $pessoa->correr();
+
+    echo '<br />';
+    // executa o metodo __destruct()
+    unset($pessoa);
 
 ?>
